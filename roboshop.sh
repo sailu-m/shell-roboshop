@@ -1,0 +1,9 @@
+#!/bin/bash
+
+SG_id="sg-03b8a7dcb89fb5035"
+AMI_ID="ami-0220d79f3f480ecf5"
+
+for instance in $@
+do
+    aws ec2 run-instances --image-id $AMI_ID --instance-type t3.micro --tag-specifications "ResourceType=instance, Tags=[{Key=Name,Value=$instance}]" --query "Reservations[0].Instances[0].PrivateIpAddress" --output text
+done
