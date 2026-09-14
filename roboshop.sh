@@ -37,8 +37,7 @@ for instance in "$@"
 
         aws route53 change-resource-record-sets \
         --hosted-zone-id $ZONE_ID \
-        --change-batch  '
-        {
+        --change-batch  '{
             "Comment": "Updating record" ,
             "Changes": [
                 {
@@ -55,8 +54,7 @@ for instance in "$@"
                 }
                 }
             ]
-        }
-        '
+        }'
         
         echo "record updated for $instance"
 
