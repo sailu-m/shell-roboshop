@@ -7,7 +7,7 @@ DOMAIN_NAME="sailu-devops.online"
 
 for instance in $@
     do
-        INSTANCE_ID=$( aws ec2 run-instnces \
+        INSTANCE_ID=$( aws ec2 run-instances \
         --image-id $AMI_ID \
         --instance-type "t3.micro" \
         --security-group-ids $SG_ID \
