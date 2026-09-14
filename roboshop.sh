@@ -5,7 +5,7 @@ AMI_ID="ami-0220d79f3f480ecf5"
 ZONE_ID="Z0895006SCJEB0EG5EI6"
 DOMAIN_NAME="sailu-devops.online"
 
-for instance in $@
+for instance in "$@"
     do
         INSTANCE_ID=$( aws ec2 run-instances \
         --image-id $AMI_ID \
@@ -15,11 +15,11 @@ for instance in $@
         --query 'Instances[0].InstanceId' \
         --output text )
 
-        if [ $instance == "frontend" ]; then
+        if [ "$instance" == "frontend" ]; then
             IP=$(
-                aws ec2 describe-instance \
+                aws ec2 describe-instances \
                 --instance-ids $INSTANCE_ID \
-                --query 'Reservations[].Instances[].PublicIpAddresss' \
+                --query 'Reservations[].Instances[].PublicIpAddress' \
                 --output text
             )
             RECORD_NAME="$DOMAIN_NAME"
