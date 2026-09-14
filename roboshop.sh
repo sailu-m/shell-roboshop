@@ -22,7 +22,7 @@ for instance in $@
                 --query 'Reservations[].Instances[].PublicIpAddresss' \
                 --output text
             )
-            RECORD_NAME="$DOMAIN_NAME
+            RECORD_NAME="$DOMAIN_NAME"
         else
             IP=$(
                 aws ec2 describe-instances \
@@ -37,7 +37,7 @@ for instance in $@
 
         aws route53 change-resource-record-sets \
         --hosted-zone-id $ZONE_ID \
-        --change-batch
+        --change-batch  '
         {
             "Comment": "Updating record" ,
             "Changes": [
@@ -56,7 +56,7 @@ for instance in $@
                 }
             ]
         }
-        
+        '
         
         echo "record updated for $instance"
 
