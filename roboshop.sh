@@ -43,12 +43,12 @@ for instance in "$@"
                 {
                 "Action": "UPSERT",
                 "ResourceRecordSet": {
-                    "Name": "$RECORD_NAME",
+                    "Name": "'"$RECORD_NAME"'" ,
                     "Type": "A",
                     "TTL": 1,
                     "ResourceRecords": [
                         {
-                            "Value": "$IP"
+                            "Value": "'"$IP"'"
                         }
                         ]
                 }
