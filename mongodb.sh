@@ -1,7 +1,8 @@
 #!/bin/bash
 
 USERID=$(id -u)
-LOGS_FOLDER="/var/log/shell-script"
+SCRIPT_NAME=$(basename "$0")
+LOGS_FOLDER="/var/log/shell-roboshop"
 LOGS_FILE="/var/log/shell-script/$0.log"
 R="\e[31m"
 G="\e[32m"
@@ -27,10 +28,10 @@ VALIDATE(){
 cp mongo.repo /etc/yum.repos.d/mongo.repo
 VALIDATE $? "Copying Mongo Repo"
 
-dnf install mongodb-org -y 
+dnf install mongodb-org -y &>>$LOGS_FILE
 VALIDATE $? "Installing MongoDB server"
 
-systemctl enable mongod 
+systemctl enable mongod &>>$LOGS_FILE
 VALIDATE $? "Enable MongoDB"
 
 systemctl start mongod
