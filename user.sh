@@ -65,6 +65,10 @@ cp $SCRIPT_DIR/user.service /etc/systemd/system/user.service
 VALIDATE $? "Created systemctl service"
 
 systemctl daemon-reload
+VALIDATE $? "Daemon Reload"
+
 systemctl enable user &>>$LOGS_FILE
-systemctl start user
-VALIDATE $? "Starting and enabling user"
+VALIDATE $? "Enabling User Service"
+
+systemctl start user &>>$LOGS_FILE
+VALIDATE $? "Starting User Service"
